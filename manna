@@ -1,14 +1,18 @@
-#This is the synthax for while-loop
+<<comment 
+This is the synthax for while-loop
 
 initiation
 while [ condition ]
 do
 condition/statement
 done
+comment
 
 a=6
 while [ $a -le 20 ]
 do
-expr $a + 1 = $a
-echo $a
+ a=$((a + 1))
+
+echo"This is the value of $a"
+
 done
