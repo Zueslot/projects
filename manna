@@ -1,0 +1,14 @@
+#This is the synthax for while-loop
+
+initiation
+while [ condition ]
+do
+condition/statement
+done
+
+a=6
+while [ $a -le 20 ]
+do
+expr $a + 1 = $a
+echo $a
+done
