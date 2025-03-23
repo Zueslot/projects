@@ -99,13 +99,13 @@
 	    <repository>
 	      <id>acada-release</id>
 	      <name>ACADA Learning release Nexus Repository</name>
-	      <url>http://nexus:8020/repository/zulu-release/</url>
+	      <url>http://nexus:8181/repository/zulu/</url>
 	    </repository>
 
 	    <snapshotRepository>
 	      <id>acada-snapshot</id>
 	      <name>ACADA Learning snapshot Nexus Repository </name>
-	      <url>http://nexus:8020/repository/zulu-snapshot/</url>
+	      <url>http://nexus:8181/repository/zulu/</url>
 	    </snapshotRepository>
 
 	</distributionManagement>
