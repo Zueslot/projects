@@ -1,0 +1,25 @@
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8011:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock  # Allow Jenkins to use Docker
+    privileged: true
+    user: root  # Needed for usermod
+    networks:
+      - telus
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        curl -fsSL https://get.docker.com | bash && \
+        usermod -aG docker jenkins && \
+        exec /usr/local/bin/jenkins.sh  # Start Jenkins properly
+
+networks:
+  telus:
+    external: true
+volumes:
+  jenkins_home:
