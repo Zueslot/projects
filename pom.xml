@@ -22,7 +22,7 @@
 		<spring.version>5.1.2.RELEASE</spring.version>
 		<junit.version>4.11</junit.version>
 		<log4j.version>1.2.17</log4j.version>
-		<sonar.host.url>http://localhost:9000</sonar.host.url>
+		<sonar.host.url>http://172.31.80.63:9000</sonar.host.url>
 		<sonar.login>admin</sonar.login>
 		<sonar.password>sonar</sonar.password>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -99,13 +99,13 @@
 	    <repository>
 	      <id>acada-release</id>
 	      <name>ACADA Learning release Nexus Repository</name>
-	      <url>http://localhost:8081/repository/zulu/</url>
+	      <url>http://172.31.80.63:8081/repository/zulu/</url>
 	    </repository>
 
 	    <snapshotRepository>
 	      <id>acada-snapshot</id>
 	      <name>ACADA Learning snapshot Nexus Repository </name>
-	      <url>http://localhost:8081/repository/zulu/</url>
+	      <url>http://172.31.80.63:8081/repository/zulu/</url>
 	    </snapshotRepository>
 
 	</distributionManagement>
