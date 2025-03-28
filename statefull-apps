@@ -1,0 +1,83 @@
+#!/bin/bash
+sudo apt install zip -y
+PASSWORD="12345"
+sudo adduser --gecos "" --disabled-password nexus
+echo "nexus:$PASSWORD" | sudo chpasswd
+echo "nexus ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/nexus
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y openjdk-17-jdk  
+cd /opt
+sudo wget https://download.sonatype.com/nexus/3/nexus-unix-x86-64-3.78.2-04.tar.gz
+sudo tar -xvf nexus-unix-x86-64-3.78.2-04.tar.gz
+sudo mv nexus-3.78.2-04 nexus
+sudo rm -rf nexus-unix-x86-64-3.78.2-04.tar.gz
+sudo chown -R nexus:nexus /opt/nexus
+sudo chmod -R 775 /opt/nexus
+sudo su - nexus -c "
+  echo 'Running as nexus user...'
+  cd /opt/nexus
+  ./bin/nexus start
+"
+sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
+sudo systemctl daemon-reload
+sudo systemctl enable nexus
+sudo systemctl start nexus
+sudo systemctl status nexus
+
+
+
+
+#Jenkins Statefull installation
+sudo useradd -m -d /var/lib/jenkins -s /bin/bash jenkins
+sudo chown -R jenkins:jenkins /var/lib/jenkins
+sudo chmod -R 775 /var/lib/jenkins
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
+  https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+sudo apt-get update
+sudo apt-get install jenkins
+sudo su - jenkins -c "
+  echo 'Running as jenkins user...'
+  cd /var/lib/jenkins
+  nohup java -jar /usr/share/jenkins/jenkins.war > /var/log/jenkins.log 2>&1 &
+"
+sudo systemctl enable jenkins
+sudo systemctl start jenkins
+sudo systemctl status jenkins
+
+
+#Sonarqube stateful
+sudo useradd -m -d /opt/sonarqube -s /bin/bash sonarqube
+echo "sonarqube ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
+sudo apt update && sudo apt upgrade -y
+cd /opt
+sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-10.1.0.73491.zip
+sudo unzip sonarqube-10.1.0.73491.zip
+sudo mv sonarqube-10.1.0.73491 sonar
+sudo rm -rf sonarqube-10.1.0.73491.zip
+sudo chown -R sonarqube:sonarqube /opt/sonar
+sudo chmod -R 775 /opt/sonar
+sudo ln -s /opt/sonar/bin/linux-x86-64/sonar.sh /usr/local/bin/sonar
+sudo su - sonarqube -c "
+  echo 'Running SonarQube as sonarqube user...'
+  cd /opt/sonar
+  ./bin/linux-x86-64/sonar.sh start
+"
+sonar start
+sonar status
+
+#Docker installation
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo tee /etc/apt/keyrings/docker.asc > /dev/null
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+sudo systemctl enable --now docker
+sudo usermod -aG docker jenkins
+sudo systemctl restart jenkins
+
