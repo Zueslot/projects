@@ -12,6 +12,7 @@ sudo tar -xvf nexus-unix-x86-64-3.78.2-04.tar.gz
 sudo mv nexus-3.78.2-04 nexus
 sudo rm -rf nexus-unix-x86-64-3.78.2-04.tar.gz
 sudo chown -R nexus:nexus /opt/nexus
+sudo chown -R nexus:nexus sonatype-work
 sudo chmod -R 775 /opt/nexus
 sudo su - nexus -c "
   echo 'Running as nexus user...'
@@ -28,21 +29,13 @@ sudo systemctl status nexus
 
 
 #Jenkins Statefull installation
-sudo useradd -m -d /var/lib/jenkins -s /bin/bash jenkins
-sudo chown -R jenkins:jenkins /var/lib/jenkins
-sudo chmod -R 775 /var/lib/jenkins
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
 echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
   https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
   /etc/apt/sources.list.d/jenkins.list > /dev/null
 sudo apt-get update
-sudo apt-get install jenkins
-sudo su - jenkins -c "
-  echo 'Running as jenkins user...'
-  cd /var/lib/jenkins
-  nohup java -jar /usr/share/jenkins/jenkins.war > /var/log/jenkins.log 2>&1 &
-"
+sudo apt-get install jenkins -y
 sudo systemctl enable jenkins
 sudo systemctl start jenkins
 sudo systemctl status jenkins
@@ -80,4 +73,3 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl enable --now docker
 sudo usermod -aG docker jenkins
 sudo systemctl restart jenkins
-
