@@ -43,17 +43,3 @@ spec:
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
----
-kind: Service
-apiVersion: v1
-metadata:
-  name: spring-svc
-  namespace: dev
-spec:
-  type: NodePort
-  selector:
-    app: spring
-  ports:
-  - targetPort: 8080
-    port: 80
-    nodePort: 32000
