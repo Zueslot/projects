@@ -1,0 +1,54 @@
+services:
+  sonarqube:
+    image: sonarqube:lts-community
+    container_name: sonarqube
+    ports:
+      - "9000:9000"
+    networks:
+      - telus
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_logs:/opt/sonarqube/logs
+      - sonarqube_extensions:/opt/sonarqube/extensions
+    restart: unless-stopped
+
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus
+    ports:
+      - "8081:8081"
+    networks:
+      - telus
+    volumes:
+      - nexus_data:/nexus-data
+    restart: unless-stopped
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    ports:
+      - "8011:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    privileged: true
+    user: root
+    networks:
+      - telus
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        curl -fsSL https://get.docker.com | bash && \
+        usermod -aG docker jenkins && \
+        exec /usr/local/bin/jenkins.sh
+
+networks:
+  telus:
+    external: true
+
+volumes:
+  sonarqube_data:
+  sonarqube_logs:
+  sonarqube_extensions:
+  nexus_data:
+  jenkins_home:
