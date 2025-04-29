@@ -1,0 +1,21 @@
+#VPN to AWS private-subnet appservers
+#Step 1.)
+#    - ssh into your jumpserver/bastion-host
+            sudo apt update
+            sudo apt upgrade -y
+            sudo apt install curl
+
+            curl -O https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh
+            chmod +x openvpn-install.sh
+            sudo ./openvpn-install.sh
+    
+#Step 2.)
+#    - configure with public ip of jumpserver and port 
+
+#step 3.) 
+#    - Go to your security group and open custom UDP, port specified above and 0.0.0.0/0
+
+#step 5.)
+#   - go back to your local terminal
+            scp -i <jumpserver's key.pem> ubuntu@<Public_ip of jumpserver>:/home/ubuntu/<openVPN File> .
+#    - insert open vpn file into the desktop openVPN application and connect
