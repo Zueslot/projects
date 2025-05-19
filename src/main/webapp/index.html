@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome to Ambrose Test App</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffe7;
+            text-align: center;
+            margin-top: 10%;
+            animation: fadeIn 2s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        .play-button {
+            margin-top: 40px;
+            background: #00ffe7;
+            border: none;
+            padding: 20px 40px;
+            border-radius: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            box-shadow: 0 0 20px #00ffe7;
+            transition: transform 0.3s ease;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome…<br>To Ambrose Eziugo’s Test Application</h1>
+    <button class="play-button" onclick="location.href='slide2.html'">▶ Play</button>
+</body>
+</html>
