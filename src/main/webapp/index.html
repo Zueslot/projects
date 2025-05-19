@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <title>Welcome to Ambrose Test App</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+
         body {
-            background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+            margin: 0;
             font-family: 'Orbitron', sans-serif;
+            background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, #1f1c2c, #928dab);
             color: #00ffe7;
             text-align: center;
-            margin-top: 10%;
             animation: fadeIn 2s ease-in;
+            background-size: cover;
         }
 
         @keyframes fadeIn {
@@ -20,6 +23,7 @@
 
         h1 {
             font-size: 3em;
+            padding-top: 10%;
         }
 
         .play-button {
@@ -37,10 +41,37 @@
         .play-button:hover {
             transform: scale(1.1);
         }
+
+        .art {
+            margin-top: 60px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .art img {
+            width: 150px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #00ffe7;
+            transition: transform 0.3s;
+        }
+
+        .art img:hover {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body>
     <h1>Welcome…<br>To Ambrose Eziugo’s Test Application</h1>
     <button class="play-button" onclick="location.href='slide2.html'">▶ Play</button>
+
+    <div class="art">
+        <img src="https://cdn-icons-png.flaticon.com/512/2721/2721294.png" alt="Server Icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/4149/4149649.png" alt="Cloud Icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/1006/1006771.png" alt="AI Icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/3064/3064197.png" alt="Monitor Icon">
+    </div>
 </body>
 </html>
