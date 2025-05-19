@@ -1,4 +1,4 @@
-#VPN to AWS private-subnet appservers
+#VPN to AWS private-subnet appservers (OpenVPN)
 #Step 1.)
 #    - ssh into your jumpserver/bastion-host
             sudo apt update
