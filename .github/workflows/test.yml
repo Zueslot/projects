@@ -24,6 +24,6 @@ jobs:
         run: mvn -B test --file pom.xml # Tests maven with the repo to ensure everything is right with the pom.xml, -B prevents interraction
 
       - name: Building Artifact
-        run: 
+        run: |
           mvn package
           mvn clean
