@@ -70,3 +70,11 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/manorapp:latest
           # secrets: |                                      #use this for private repo
           #   GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+
+      - name: Build Docker image
+        run: |
+          docker pull zeusmanor/tomcat:latest  # Pull your custom Tomcat image from Docker Hub
+
+      - name: Deploy WAR to Docker Tomcat
+        run: |
+          docker run -d -p 8080:8080 -v ${{ github.workspace }}/target/your-app.war:/usr/local/tomcat/webapps/your-app.war zeusmanor/tomcat:latest
