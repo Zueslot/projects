@@ -8,7 +8,7 @@ on: # triggers of your github action run
 jobs:
   build-deploy:
     name: Building Artifact
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     steps:
       - name: checkout code
