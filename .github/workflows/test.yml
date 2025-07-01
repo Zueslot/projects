@@ -46,3 +46,4 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/app:latest
           secrets: |
             GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+
