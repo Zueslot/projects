@@ -26,3 +26,4 @@ jobs:
       - name: Building Artifact
         run: 
           mvn package
+          mvn clean
