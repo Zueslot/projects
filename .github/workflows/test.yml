@@ -25,5 +25,4 @@ jobs:
 
       - name: Building Artifact
         run: 
-          mvn clean
-          mvn -B package --file pom.xml
+          mvn clean, package
