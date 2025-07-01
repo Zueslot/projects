@@ -42,6 +42,9 @@ sudo systemctl status jenkins
 
 
 #Sonarqube stateful
+#sudo apt update && sudo apt upgrade -y
+#sudo apt install -y openjdk-17-jdk  
+#sudo apt install zip -y
 sudo useradd -m -d /opt/sonarqube -s /bin/bash sonarqube
 echo "sonarqube ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonarqube
 sudo apt update && sudo apt upgrade -y
