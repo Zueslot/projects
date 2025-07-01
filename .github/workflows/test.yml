@@ -28,6 +28,25 @@ jobs:
           mvn clean
           mvn package
 
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'
+        
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -42,9 +61,6 @@ jobs:
           push: false
           tags: ${{ vars.DOCKERHUB_USERNAME }}/manorapp:latest
 
-      # - name: Set up Docker Buildx
-      #   uses: docker/setup-buildx-action@v3
-
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
@@ -54,3 +70,6 @@ jobs:
           tags: ${{ vars.DOCKERHUB_USERNAME }}/manorapp:latest
           # secrets: |                                      #use this for private repo
           #   GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
+
+
+
