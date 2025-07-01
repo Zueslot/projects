@@ -1,4 +1,4 @@
-name: Build and deploy my APP # the name of your pipeline
+name: Dev & QA jobs # the name of your pipeline
 
 on: # triggers of your github action run
   push:
@@ -21,4 +21,8 @@ jobs:
           java-version: 17
 
       - name: Unit Testing
-        run: mvn -B test --file pom.xml
+        run: mvn -B test --file pom.xml # Tests maven with the repo to ensure everything is right with the pom.xml, -B prevents interraction
+
+      - name: Building Artifact
+        run: mvn clean
+          mvn package
