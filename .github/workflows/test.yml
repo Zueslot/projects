@@ -28,6 +28,14 @@ jobs:
           mvn clean
           mvn package
 
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          dockerfile: Dockerfile
+          push: false
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/manorapp:latest
+
       - name: Login to Docker Hub
         uses: docker/login-action@v3
         with:
@@ -43,7 +51,6 @@ jobs:
           context: .
           dockerfile: Dockerfile
           push: true
-          tags: ${{ vars.DOCKERHUB_USERNAME }}/app:latest
+          tags: ${{ vars.DOCKERHUB_USERNAME }}/manorapp:latest
           # secrets: |                                      #use this for private repo
-          #   GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}   
-
+          #   GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
