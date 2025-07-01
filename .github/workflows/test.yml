@@ -12,4 +12,4 @@ jobs:
 
     steps:
       - name: checkout code
-        uses: actions/checout@4
+        uses: actions/checkout@4
