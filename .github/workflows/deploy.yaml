@@ -23,5 +23,8 @@ jobs:
       - name: Maven installation
         run: mvn -B test --file pom.xml
 
+      - name: Code build
+        run: mvn clean package
+
 
 
