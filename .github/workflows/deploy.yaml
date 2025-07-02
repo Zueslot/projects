@@ -45,7 +45,7 @@ jobs:
         with:
           context: .
           dockerfile: Dockerfile
-          push: false
+          push: true
           tags: ${{ vars.DOCKERHUB_USERNAME }}/ch16:latest
 
 
