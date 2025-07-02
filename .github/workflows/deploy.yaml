@@ -1,0 +1,24 @@
+name: Cohort16 Continous Integration
+
+on:
+    push:
+      branches: 
+        - main
+
+jobs:
+  build-deploy:
+    name: Build A Project
+    runs-on: Ubuntu-latest
+
+    steps:
+      - name: Repo Check out
+        uses: actions/checkout@v4
+
+      - name: JAVA installation
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' 
+          java-version: 17
+
+          
+
