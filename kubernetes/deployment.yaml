@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
         - name: spring
-          image: zeusmanor/zeus:100
+          image: zeusmanor/ch16:latest
           ports:
           - containerPort: 8080
           livenessProbe:
