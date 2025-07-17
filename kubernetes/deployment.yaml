@@ -27,19 +27,19 @@ spec:
           - containerPort: 8080
           livenessProbe:
             httpGet:
-              path: /web-app
+              path: /testapp
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
           readinessProbe:
             httpGet:
-              path: /web-app
+              path: /testapp
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
           startupProbe:
             httpGet:
-              path: /web-app
+              path: /testapp
               port: 8080
             initialDelaySeconds: 10
             periodSeconds: 5
