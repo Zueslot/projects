@@ -41,7 +41,7 @@ pipeline {
             steps {
                 echo 'pushing image to docker'
                 sh '''
-                  docker push zeusapp:latest
+                  docker push zeusmanor/zeusapp:latest
                   '''
             }
         }
