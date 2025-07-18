@@ -23,8 +23,17 @@ stages {
     }
     stage(" Image tagging") {
             steps {
-                echo "tagging images now..."
-                sh "docker tag zeusapp zeusmanor/zeusapp:latest"
+                // echo "tagging images now..."
+                // sh "docker tag zeusapp zeusmanor/zeusapp:latest"
+            }
+    }
+    stage("docker login") {
+            steps {
+                echo 'Docker login...'
+                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'Docker_Password', usernameVariable: 'Docker_User')]) {
+                    sh '''
+                        echo "$Docker_Password" | docker login -u "$Docker_User" --password-stdin
+                    '''
             }
     }
     }
