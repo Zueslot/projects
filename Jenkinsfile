@@ -10,5 +10,5 @@ stages {
         steps {
             git branch: 'main', url: "https://github.com/Zueslot/projects.git"
         }
-}
+    }
 }
