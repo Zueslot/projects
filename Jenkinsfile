@@ -18,15 +18,15 @@ pipeline {
         stage('Docker build') {
             steps {
                 echo 'Running docker build'
-            // sh "docker build -t zeusapp -f Dockerfile.txt . "
+                sh 'docker build -t zeusapp -f Dockerfile.txt . '
             }
         }
-        // stage(' Image tagging') {
-        //     steps {
-        //     // echo "tagging images now..."
-        //     // sh "docker tag zeusapp zeusmanor/zeusapp:latest"
-        //     }
-        // }
+        stage(' Image tagging') {
+            steps {
+                echo 'tagging images now...'
+                sh 'docker tag zeusapp zeusmanor/zeusapp:latest'
+            }
+        }
         stage('docker login') {
             steps {
                 echo 'Docker login...'
