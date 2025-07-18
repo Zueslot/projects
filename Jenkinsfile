@@ -40,7 +40,9 @@ pipeline {
         stage('docker push') {
             steps {
                 echo "pushing image to docker"
-                sh "docker push $zeusapp:latest
+                sh '''
+                  docker push $zeusapp:latest
+                  '''
             }
         }
     }
