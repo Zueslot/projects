@@ -8,5 +8,12 @@ stages {
             sh "ls -la"
         }
     }
+    stage('Maven build and Clean') {
+        steps {
+            echo "building maven"
+            sh "mvn clean"
+            sh " mvn package"
+        }
+    }
     }
 }
