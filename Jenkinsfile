@@ -48,13 +48,13 @@ pipeline {
                   '''
             }
                 }
-        stage('Kubernetes Deployment') {
-            steps {
-                echo 'Deploying to Kubernetes'
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
-            }
-        }
+        // stage('Kubernetes Deployment') {
+        //     steps {
+        //         echo 'Deploying to Kubernetes'
+        //         sh 'kubectl apply -f deployment.yaml'
+        //         sh 'kubectl apply -f service.yaml'
+        //     }
+        // }
     }
 }
 
@@ -92,7 +92,6 @@ pipeline {
             )
         }
     }
-
 
 // pipeline {
 //     agent any
