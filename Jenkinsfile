@@ -36,5 +36,13 @@ pipeline {
                 }
             }
         }
+                stage('docker push') {
+            steps {
+                echo 'pushing image to docker'
+                sh '''
+                  docker push zeusmanor/zeusapp:1.0.0
+                  '''
+            }
+        }
     }
 }
