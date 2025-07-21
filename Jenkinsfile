@@ -10,5 +10,3 @@ pipeline {
         }
     }
 }
-
-// Good evening
