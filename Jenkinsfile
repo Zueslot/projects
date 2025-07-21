@@ -12,8 +12,12 @@ pipeline {
             steps {
                 echo ' Packaging artifact using maven...'
                 sh 'mvn clean package'
-                sh 'mvn sonar:sonar -Dsonar.qualitygate.wait=true'
-            // sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'"
+                // sh 'mvn sonar:sonar -Dsonar.qualitygate.wait=true'
+                // sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'"
+                    def mvn = tool 'Default Maven'
+                    withSonarQubeEnv() {
+                        sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'"
+                    }
             }
         }
         stage('Docker build') {
