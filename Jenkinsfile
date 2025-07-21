@@ -23,7 +23,7 @@ pipeline {
         stage('Tagging Docker image') {
             steps {
                 echo ' Tagging Docker image...'
-                sh 'docker tag zeus app zeusmanor/zeusapp:1.0.0'
+                sh 'docker tag zeusapp zeusmanor/zeusapp:1.0.0'
             }
         }
     }
