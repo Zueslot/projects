@@ -14,5 +14,11 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
+        stage('Docker build') {
+            steps {
+                echo ' Building docker image with artifact...'
+                sh 'docker build -t zeusapp -f Dockerfile .'
+            }
+        }
     }
 }
