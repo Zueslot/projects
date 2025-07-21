@@ -46,6 +46,6 @@ pipeline {
                   docker push zeusmanor/zeusapp:1.0.0
                   '''
             }
-                }
+        }
     }
 }
