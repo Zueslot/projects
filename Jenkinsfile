@@ -12,6 +12,7 @@ pipeline {
             steps {
                 echo ' Packaging artifact using maven...'
                 sh 'mvn clean package'
+                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'"
             }
         }
         stage('Docker build') {
