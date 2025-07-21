@@ -26,5 +26,15 @@ pipeline {
                 sh 'docker tag zeusapp zeusmanor/zeusapp:1.0.0'
             }
         }
+        stage('Docker Login') {
+            steps {
+                echo 'Loggin in to Docker'
+                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKER-PASSWORD', usernameVariable: 'DOCKER-USER')]) {
+                    sh '''
+                        echo "$DOCKER-PASSWORD" | docker login -u "DOCKER-USER" --password-stdin
+                        '''
+                }
+            }
+        }
     }
 }
