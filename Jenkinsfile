@@ -20,5 +20,11 @@ pipeline {
                 sh 'docker build -t zeusapp -f Dockerfile.txt .'
             }
         }
+        stage('Tagging Docker image') {
+            steps {
+                echo ' Tagging Docker image...'
+                sh 'docker tag zeus app zeusmanor/zeusapp:1.0.0'
+            }
+        }
     }
 }
