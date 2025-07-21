@@ -5,8 +5,8 @@
   <servers>
     <server>
       <id>sonarqube</id>
-      <username>your-admin-username</username>
-      <password>your-sonar-token</password>
+      <username>admin</username>
+      <password>sonar</password>
     </server>
     <server>
       <id>nexus</id>
