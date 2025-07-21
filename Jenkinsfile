@@ -15,10 +15,6 @@ pipeline {
                 withSonarQubeEnv('SonarQubeServerName') {
                     sh 'mvn sonar:sonar -Dsonar.qualitygate.wait=true'
                 }
-                // sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'"
-                    // withSonarQubeEnv() {
-                    //     sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=zeus -Dsonar.projectName='zeus'"
-                    // }
             }
         }
         stage('Docker build') {
