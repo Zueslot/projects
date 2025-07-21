@@ -17,7 +17,7 @@ pipeline {
         stage('Docker build') {
             steps {
                 echo ' Building docker image with artifact...'
-                sh 'docker build -t zeusapp -f Dockerfile .'
+                sh 'docker build -t zeusapp -f Dockerfile.txt .'
             }
         }
     }
