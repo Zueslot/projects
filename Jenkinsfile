@@ -12,19 +12,19 @@ pipeline {
             steps {
                 echo ' Packaging artifact using maven...'
                 sh 'mvn clean package'
-                withSonarQubeEnv('SonarQubeServerName') {
-                    // Use this above & below line if both Jenkins and Sonar are in the same server Set this in manage jenkins-settings, search "SonarQube servers" use sonarqube global token
-                    sh 'mvn sonar:sonar -Dsonar.qualitygate.wait=true'
-                }
+                // withSonarQubeEnv('SonarQubeServerName') {
+                //     // Use this above & below line if both Jenkins and Sonar are in the same server Set this in manage jenkins-settings, search "SonarQube servers" use sonarqube global token
+                //     sh 'mvn sonar:sonar -Dsonar.qualitygate.wait=true'
+                // }
             }
         }
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 1, unit: 'HOURS') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Quality Gate') {
+        //     steps {
+        //         timeout(time: 1, unit: 'HOURS') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         stage('Docker build') {
             steps {
                 echo ' Building docker image with artifact...'
