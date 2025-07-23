@@ -1,11 +1,11 @@
-# FROM nginx:latest
-# COPY ./index.html /usr/share/nginx/html/index.html
-# EXPOSE 8083
-# RUN apt-get update -y 
-# RUN apt-get install nano -y
-# # WORKDIR /opt/work/1
-# # RUN yum update 2>> /opt/work/1/error.txt || true
-# RUN echo "dekunle ALL=NOPASSWD: ALL" >> /etc/sudoers
-# RUN useradd -m dekunle 
-# # ENTRYPOINT [ "systemctl start nginx" ]
-# CMD ["nginx", "-g", "daemon off;"]
+FROM nginx:latest
+COPY ./index.html /usr/share/nginx/html/index.html
+EXPOSE 8083
+RUN apt-get update -y 
+RUN apt-get install nano -y
+# WORKDIR /opt/work/1
+# RUN yum update 2>> /opt/work/1/error.txt || true
+RUN echo "dekunle ALL=NOPASSWD: ALL" >> /etc/sudoers
+RUN useradd -m dekunle 
+# ENTRYPOINT [ "systemctl start nginx" ]
+CMD ["nginx", "-g", "daemon off;"]
