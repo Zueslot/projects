@@ -1,13 +1,13 @@
-kind: Service
 apiVersion: v1
+kind: Service
 metadata:
-  name: spring-svc
-  namespace: dev
+  name: ogba-svc
+  namespace: test
 spec:
   type: NodePort
   selector:
-    app: spring
+    app: my-app
   ports:
-  - targetPort: 8080
-    port: 80
-    nodePort: 32000
+    - targetPort: 8080 # Container port
+      port: 8070 # Our kubernetes service port
+      nodePort: 32020 # 32000 - 32767 Host port for us to access our application on the web
