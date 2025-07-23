@@ -33,9 +33,9 @@ pipeline {
         stage('Docker Login') {
             steps {
                 echo 'Loggin in to Docker'
-                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'Docker-password', usernameVariable: 'Docker-user')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'Docker_password', usernameVariable: 'Docker_user')]) {
                     sh '''
-                        echo "$Docker-password" | docker login -u "$Docker-user" --password-stdin
+                        echo "$Docker_password" | docker login -u "$Docker_user" --password-stdin
                     '''
                 }
             }
