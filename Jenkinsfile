@@ -27,7 +27,7 @@ pipeline {
         stage('Tagging Docker image') {
             steps {
                 echo ' Tagging Docker image...'
-                sh 'docker tag zeusapp zeusmanor/zeusapp:1.0.1'
+                sh 'docker tag zeusapp zeusmanor/zeusapp:1.0.2'
             }
         }
         stage('Docker Login') {
@@ -44,7 +44,7 @@ pipeline {
             steps {
                 echo 'pushing image to docker'
                 sh '''
-                  docker push zeusmanor/zeusapp:1.0.1
+                  docker push zeusmanor/zeusapp:1.0.2
                   '''
             }
                 }
@@ -58,40 +58,40 @@ pipeline {
     }
 }
 
-    post {
-        success {
-            emailext(
-                subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <p>✔️ The build <b>${env.JOB_NAME}</b> #${env.BUILD_NUMBER} completed successfully.</p>
-                    <p>View details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """,
-                to: 'koolharmbhrosz1@gmail.com'
-            )
-        }
+    // post {
+    //     success {
+    //         emailext(
+    //             subject: "✅ SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             body: """
+    //                 <p>✔️ The build <b>${env.JOB_NAME}</b> #${env.BUILD_NUMBER} completed successfully.</p>
+    //                 <p>View details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """,
+    //             to: 'koolharmbhrosz1@gmail.com'
+    //         )
+    //     }
 
-        failure {
-            emailext(
-                subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <p>❗ The build <b>${env.JOB_NAME}</b> #${env.BUILD_NUMBER} has <b>FAILED</b>.</p>
-                    <p>View details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """,
-                to: 'ambroseeziugo@gmail.com'
-            )
-        }
+    //     failure {
+    //         emailext(
+    //             subject: "❌ FAILURE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             body: """
+    //                 <p>❗ The build <b>${env.JOB_NAME}</b> #${env.BUILD_NUMBER} has <b>FAILED</b>.</p>
+    //                 <p>View details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """,
+    //             to: 'ambroseeziugo@gmail.com'
+    //         )
+    //     }
 
-        unstable {
-            emailext(
-                subject: "⚠️ UNSTABLE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <p>⚠️ The build <b>${env.JOB_NAME}</b> #${env.BUILD_NUMBER} is <b>UNSTABLE</b>.</p>
-                    <p>View details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """,
-                to: 'koolharmbhrosz1@gmail.com'
-            )
-        }
-    }
+    //     unstable {
+    //         emailext(
+    //             subject: "⚠️ UNSTABLE: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+    //             body: """
+    //                 <p>⚠️ The build <b>${env.JOB_NAME}</b> #${env.BUILD_NUMBER} is <b>UNSTABLE</b>.</p>
+    //                 <p>View details: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
+    //             """,
+    //             to: 'koolharmbhrosz1@gmail.com'
+    //         )
+    //     }
+    // }
 
 // pipeline {
 //     agent any
