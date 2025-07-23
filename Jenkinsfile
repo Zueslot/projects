@@ -63,7 +63,6 @@ pipeline {
     //     }
     // }
     }
-}
 
     post {
         success {
@@ -99,6 +98,7 @@ pipeline {
             )
         }
     }
+}
 
 // pipeline {
 //     agent any
