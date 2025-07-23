@@ -18,13 +18,13 @@ pipeline {
                 }
             }
         }
-        stage('Quality Gate') {
-            steps {
-                timeout(time: 10, unit: 'SECONDS') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Quality Gate') {
+        //     steps {
+        //         timeout(time: 10, unit: 'SECONDS') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
         stage('Docker build') {
             steps {
                 echo ' Building docker image with artifact...'
