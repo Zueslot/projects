@@ -1,4 +1,9 @@
 #!/bin/bash
+
+#fails the entire script if any command fails in the script
+set -e
+export DEBIAN_FRONTEND=noninteractive # allows it to run without interaction
+
 sudo apt install zip -y
 PASSWORD="12345"
 sudo adduser --gecos "" --disabled-password nexus
